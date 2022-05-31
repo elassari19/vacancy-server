@@ -1,10 +1,19 @@
 backend vacancy project
-[visit vacancy](https://ton-vacanc+ vee+ ap)
+<br/>
+
+[visit vacancy](https://ton-vacancy.vercel.app/)
 
 ## 1 run server
 
 - 1 install express js
+  <br/>
+  ´´´bash
   yarn add express
+  ´´´
+  or
+  ´´´bash
+  npm i express
+  ´´´
 - 2 run server on port 5000
 - 3 add home route in the index.js file
   <br/>
