@@ -1,4 +1,3 @@
-const { createToken } = require('../utils');
 
 const router = require('express').Router();
 

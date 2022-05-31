@@ -3,16 +3,19 @@ backend vacancy project
 
 [visit vacancy](https://ton-vacancy.vercel.app/)
 
+## install dependencies
+
 ## 1 run server
 
 - 1 install express js
   <br/>
   ```bash
   yarn add express
+   mongoose cookie-parser express-session dotenv express-async-handler joi jsonwebtoken nodemailer bcrypt
   ```
   or
   ```bash
-  npm i express
+  npm i express mongoose cookie-parser express-session dotenv express-async-handler joi jsonwebtoken nodemailer bcrypt
   ```
 - 2 run server on port 5000
 - 3 add home route in the index.js file
