@@ -7,13 +7,13 @@ backend vacancy project
 
 - 1 install express js
   <br/>
-  ´´´bash
+  ```bash
   yarn add express
-  ´´´
+  ```
   or
-  ´´´bash
+  ```bash
   npm i express
-  ´´´
+  ```
 - 2 run server on port 5000
 - 3 add home route in the index.js file
   <br/>
