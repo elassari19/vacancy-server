@@ -8,12 +8,10 @@
   },
   "dependencies": {
     "bcrypt": "^5.0.1",
-    "bcryptjs": "^2.4.3",
+    "cloudinary": "^1.30.0",
     "cookie-parser": "^1.4.6",
     "dotenv": "^16.0.1",
     "express": "^4.18.1",
-    "express-async-handler": "^1.2.0",
-    "express-joi-validation": "^5.0.1",
     "express-session": "^1.17.3",
     "joi": "^17.6.0",
     "jsonwebtoken": "^8.5.1",

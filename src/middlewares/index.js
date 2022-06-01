@@ -3,11 +3,13 @@ const findUser = require("./findUser");
 const joiValidateData = require("./joiValidateData");
 const verifyCode = require("./verifyCode");
 const protectRoute = require("./protectRoute");
+const updateData = require("./updateData");
 
 module.exports = {
   findOne,
   findUser,
   joiValidateData,
   verifyCode,
-  protectRoute
+  protectRoute,
+  updateData
 }

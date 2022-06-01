@@ -9,7 +9,7 @@ console.log(confirm)
       if(valid){
         const update = await User.findOneAndUpdate(
           {_id: req.user.id},
-          {status: 'Active' , confirmation: 0},
+          {status: 'Active' , confirmation: ''},
           {new: true}
         );
         if(update) {

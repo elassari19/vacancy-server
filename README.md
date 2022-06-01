@@ -3,20 +3,21 @@ backend vacancy project
 
 [visit vacancy](https://ton-vacancy.vercel.app/)
 
-## install dependencies
+## install _dependencies_
+
+```bash
+yarn add express mongoose cookie-parser express-session dotenv  joi jsonwebtoken nodemailer bcrypt
+```
+
+## install _devDependencies_
+
+```bash
+yarn add nodemon -dev
+```
 
 ## 1 run server
 
-- 1 install express js
-  <br/>
-  ```bash
-  yarn add express
-   mongoose cookie-parser express-session dotenv express-async-handler joi jsonwebtoken nodemailer bcrypt
-  ```
-  or
-  ```bash
-  npm i express mongoose cookie-parser express-session dotenv express-async-handler joi jsonwebtoken nodemailer bcrypt
-  ```
+- 1 import express js
 - 2 run server on port 5000
 - 3 add home route in the index.js file
   <br/>
@@ -34,16 +35,15 @@ backend vacancy project
 
 ## 3 use mongoDB database
 
-- 1 install moongose
-  yarn add moongose
-- 2 import mongo connect module
+- 1 create new mongoDB database
+- 2 import mongoDB connection module
 - 3 connect mongoDB
   <br/>
 
 ## 4 add signup user route
 
 - 1 create signup route in routers folder
-- 2 check the request data is valide
+- 2 check the request data is valide by joi library
 - 3 check the user if already exist
 - 4 hashign the password by bcrypt.hash and push it to user data
 - 5 save user in database
@@ -84,8 +84,22 @@ backend vacancy project
 - 1 check the cookies if user already signed in /middleware
 - 2 clear the cookie from client browser
 - 3 redirect to signin route
+  <br/>
 
-<br/>
-<br/>
-<br/>
+# 9 add update data user route
+
+- 1 check the cookies if user already signed in /middleware
+- 2 get the new update data from requset
+- 3 push the update data to req.user
+- 4 save the new data wish exist in req.user in database
+  <br/>
+
+# 9 add upload image/file user route
+
+- 1 check the cookies if user already signed in /middleware
+- 2 upload image to cloud and push the new url in data /middleware
+- 3 push the image/file to req.user
+- 4 save the req.user in database
+  <br/>
+
 <br/>

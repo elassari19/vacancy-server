@@ -20,12 +20,18 @@ const User = mongoose.Schema({
     require: true,
   },
   phone: {
-    type: Number,
+    type: String,
+  },
+  gender: {
+    type: String,
   },
   profile: {
     image: String,
     title: String,
     description: String,
+  },
+  company: {
+    type: [String]
   },
   social:{
     linkedin: String,
@@ -35,6 +41,9 @@ const User = mongoose.Schema({
     instagram: String
   },
   skill: {
+    type: [String]
+  },
+  education: {
     type: [String]
   },
   experience: {
@@ -55,6 +64,10 @@ const User = mongoose.Schema({
     type: String, 
     enum: ['Pending', 'Active'],
     default: 'Pending'
+  },
+  permissioon: {
+    type: String,
+    default: "user"
   },
   confirmation: String
 },{
