@@ -26,7 +26,10 @@ const User = mongoose.Schema({
     type: String,
   },
   profile: {
-    image: String,
+    avatar: {
+      public_id: String,
+      secure_url: String
+    },
     title: String,
     description: String,
   },

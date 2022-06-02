@@ -4,6 +4,7 @@ const joiValidateData = require("./joiValidateData");
 const verifyCode = require("./verifyCode");
 const protectRoute = require("./protectRoute");
 const updateData = require("./updateData");
+const uploadFiles = require("./uploadFiles");
 
 module.exports = {
   findOne,
@@ -11,5 +12,6 @@ module.exports = {
   joiValidateData,
   verifyCode,
   protectRoute,
-  updateData
+  updateData,
+  uploadFiles,
 }

@@ -5,6 +5,8 @@ const verifyAccount = require("./verifyAccount");
 const signout = require("./signout");
 const signin = require("./signin");
 const updateProfile = require("./updateProfile");
+const updateAvatar = require("./updateAvatar");
+const deleteUser = require("./deleteUser");
 
 const router = Router();
 
@@ -13,19 +15,8 @@ router.use('/', signin);
 router.use('/', verifyAccount);
 router.use('/', signout);
 router.use('/', updateProfile);
-router.use('/delete', async(req, res) => {
-  const { email } = req.body
-  try {
-    
-    const user = await User.findOne({email});
-    !user._id && res.status(402).send('not exist');
+router.use('/', updateAvatar);
 
-    const resault = await User.deleteOne({email})
-    resault.deletedCount == 1 && res.send('email deleted')  
-
-  } catch (error) {
-    res.send(error)
-  }
-});
+router.use('/', deleteUser)
 
 module.exports = router

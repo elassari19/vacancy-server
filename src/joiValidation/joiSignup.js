@@ -8,7 +8,10 @@ module.exports = Joi.object({
   password: Joi.string().min(8).max(200).required(),
   phone: Joi.string().min(8).max(20),
   profile: {
-    image: Joi.string(),
+    avatar: {
+      public_id: Joi.string(),
+      secure_url: Joi.string()
+    },
     title: Joi.string(),
     description: Joi.string().min(50).max(300)
   },
