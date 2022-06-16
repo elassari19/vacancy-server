@@ -19,6 +19,7 @@ export default Joi.object({
   },
   about: Joi.array().items(Joi.string()),
   skill: Joi.array().items(Joi.string()),
+  crypto: Joi.boolean(),
   company: Joi.array().items(Joi.string()),
   education: Joi.array().items(Joi.string()),
   experience: Joi.array().items(Joi.string()),
