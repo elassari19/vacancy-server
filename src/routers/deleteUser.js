@@ -1,17 +1,8 @@
-const { protectRoute } = require("../middlewares");
-const { User } = require("../models");
-const router = require("express").Router();
+import { isAuthenticate, protectRoute } from "../middlewares"
+import {Router} from "express"
+import { deleteAcount } from "../controllers/UserControl";
 
-module.exports = router.post('/delete'
-  ,protectRoute()
-  , async(req, res) => {
-
-    try {
-
-      const resault = await User.deleteOne({_id: req.user._id})
-      resault.deletedCount == 1 && res.send('user successfuly deleted')  
-
-    } catch (error) {
-      res.send(error)
-    }
-});
+const router = Router()
+export default router.delete('/delete'
+  ,isAuthenticate()
+  ,deleteAcount());

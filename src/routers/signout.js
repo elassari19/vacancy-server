@@ -1,9 +1,10 @@
+import { Router } from "express";
+import { controlSignout } from "../controllers/UserControl"
+import { isAuthenticate } from "../middlewares";
 
-const router = require('express').Router();
+const router = Router();
 
-module.exports = router.get('/signout'
-  , (req, res) => {
-
-    res.clearCookie('token');
-    res.redirect('/api/v1')
-})
+export default router.get('/signout'
+  ,isAuthenticate()
+  ,controlSignout()
+)

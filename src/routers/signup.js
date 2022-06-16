@@ -1,12 +1,12 @@
-const router = require("express").Router();
-const { findOne, joiValidateData } = require("../middlewares");
-const { joiSignup } = require("../joiValidation");
+import {Router} from "express"
+import { controlSignup } from "../controllers/UserControl";
+import { joiValidateData } from "../middlewares"
+import { joiSignup } from "../validation"
 
+const router = Router()
 
-router.post('/signup'
+export default router.post('/signup'
   ,joiValidateData(joiSignup) // validation of req.body
-  ,findOne()
-  ,(req, res) => { res.status(201).send(req.user) }
+  ,controlSignup()
 );
 
-module.exports = router;

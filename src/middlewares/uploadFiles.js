@@ -1,15 +1,8 @@
 // https://www.youtube.com/watch?v=8Q5p3xQOH6E
-const cloudinary = require('cloudinary').v2;
-const fs = require('fs')
+import cloudinary from 'cloudinary'
+import fs from 'fs'
 
-// we will upload image on cloudinary
-cloudinary.config({
-  cloud_name: process.env.CLOUD_NAME,
-  api_key: process.env.CLOUD_API_KEY,
-  api_secret: process.env.CLOUD_API_SECRET
-});
-
-module.exports = () => async (req, res, next) => {
+export default () => async (req, res, next) => {
 
   try {
     if(!req.files || Object.keys(req.files).length === 0)
@@ -26,19 +19,21 @@ module.exports = () => async (req, res, next) => {
       return res.status(400).json({msg: "File format is incorrect."})
     }
 
-    cloudinary.v2.uploader.upload(file.tempFilePath, {folder: "test"}, async(err, resault)=>{
+    cloudinary.v2.uploader.upload(file.tempFilePath, {folder: "avatar"}, async(err, resault)=>{
       if(err) throw err;
 
       removeTmp(file.tempFilePath);
 
       // delete the old avatar of user
       const {avatar} = req.user.profile.avatar;
-      if(!avatar) return res.status(400).json({msg: 'No images Selected'})
+      if(avatar) {
+        
+        // remove image avatar from the cloudinary
+        cloudinary.v2.uploader.destroy(avatar, async(err, result) =>{
+          if(err) throw err;
+        })
+      }
 
-      // remove image avatar from the cloudinary
-      cloudinary.v2.uploader.destroy(avatar, async(err, result) =>{
-        if(err) throw err;
-      })
 
       req.user.profile.avatar = {
         public_id: resault.public_id,
@@ -53,6 +48,7 @@ module.exports = () => async (req, res, next) => {
   }
 };
 
+// cleare request from files
 const removeTmp = (path) =>{
   fs.unlink(path, err=>{
       if(err) throw err;

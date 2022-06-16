@@ -1,10 +1,15 @@
-const { hashString, compareString } = require('./bcryptHndler');
-const sendEmail = require('./sendEmail');
-const {createToken} = require('./token');
+import { hashString, compareString } from './bcryptHndler'
+import {createToken, verifyToken} from './token'
+import sendEmail from './sendEmail'
+import cloudinaryDeleteFiles from './cloudinaryDeleteFiles'
+import destructImageId from './destructImageId'
 
-module.exports = {
+export {
   hashString,
   compareString,
   sendEmail,
-  createToken
+  createToken,
+  verifyToken,
+  cloudinaryDeleteFiles,
+  destructImageId
 }

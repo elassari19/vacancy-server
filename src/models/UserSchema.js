@@ -1,4 +1,4 @@
-const mongoose = require("mongoose");
+import mongoose from "mongoose"
 
 const User = mongoose.Schema({
   firstname: {
@@ -32,25 +32,21 @@ const User = mongoose.Schema({
     },
     title: String,
     description: String,
+    Underemployment: Boolean,
   },
-  company: {
-    type: [String]
-  },
+  skill: [String],
+  experience: [String],
+  company: [String],
+  education: [String],
+  birthday: Date,
+  timeline: String,
+  empolyeType: String,
   social:{
     linkedin: String,
     facebook: String,
     tweeter: String,
     github: String,
-    instagram: String
-  },
-  skill: {
-    type: [String]
-  },
-  education: {
-    type: [String]
-  },
-  experience: {
-    type: [String]
+    instagram: String,
   },
   pay: {
     hour: Number,
@@ -61,16 +57,21 @@ const User = mongoose.Schema({
     country: String,
     city: String,
     street: String,
-    zip: String
+    zip: String,
+    geo: {
+      lan: Number,
+      lat: Number
+    }
   },
   status: {
     type: String, 
     enum: ['Pending', 'Active'],
     default: 'Pending'
   },
-  permissioon: {
+  permission: {
     type: String,
-    default: "user"
+    enum: ['User', 'Admin'],
+    default: "User"
   },
   confirmation: String
 },{

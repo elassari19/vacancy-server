@@ -1,5 +1,8 @@
-const User = require('./UserSchema')
 
-module.exports = {
+import User from './UserSchema'
+import vacancy from './vacancy'
+
+export {
   User,
-}
+  vacancy
+} 

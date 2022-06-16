@@ -1,8 +1,8 @@
-const mongoose  = require("mongoose");
+import mongoose from "mongoose"
 
-const mongoConnect = async () => { 
+export default async () => { 
   try {
-    const connect = await mongoose.connect(process.env.MONGOOSE_URI,{
+    await mongoose.connect(process.env.MONGOOSE_URI,{
       useUnifiedTopology: true,
       useNewUrlParser: true,
     })
@@ -12,5 +12,3 @@ const mongoConnect = async () => {
     process.exit(1);
   }
  }
-
- module.exports = mongoConnect;

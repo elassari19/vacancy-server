@@ -1,17 +1,25 @@
-const express = require("express");
-const cookieParser = require("cookie-parser");
-const routers = require("./routers");
-const session = require("express-session");
-const mongoConnect = require("./mongoDB")
-
+import {v2 as cloudinary} from 'cloudinary'
+import cookieParser from "cookie-parser";
+import routers from "./routers";
+import session from "express-session";
+import {mongoDB} from "./config";
+import express from 'express'
 // dotenv library
 require("dotenv").config();
+
+// cloudinary config
+cloudinary.config({ 
+  cloud_name: process.env.CLOUD_NAME, 
+  api_key: process.env.CLOUD_API_KEY, 
+  api_secret: process.env.CLOUD_SECRET_KEY,
+  secure: true
+})
 
 const port = process.env.PORT || 5000;
 const app = express();
 
 // connect database 'mongoDB'
-mongoConnect();
+mongoDB();
 
 app.use(express.json());
 //app.use(express.urlencoded());

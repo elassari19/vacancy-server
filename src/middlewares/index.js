@@ -1,17 +1,11 @@
-const findOne = require("./findOne");
-const findUser = require("./findUser");
-const joiValidateData = require("./joiValidateData");
-const verifyCode = require("./verifyCode");
-const protectRoute = require("./protectRoute");
-const updateData = require("./updateData");
-const uploadFiles = require("./uploadFiles");
+import joiValidateData from "./joiValidateData"
+import updateData from "./updateData"
+import uploadFiles from "./uploadFiles"
+import isAuthenticate from "./isAuthenticate"
 
-module.exports = {
-  findOne,
-  findUser,
+export {
   joiValidateData,
-  verifyCode,
-  protectRoute,
   updateData,
   uploadFiles,
+  isAuthenticate,
 }

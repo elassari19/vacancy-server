@@ -1,4 +1,4 @@
-const bcrypt = require("bcrypt");
+import bcrypt from "bcrypt"
 
 const hashString = async (string) => { 
   try {
@@ -10,6 +10,7 @@ const hashString = async (string) => {
 }
 
 const compareString = async (string, compare) => {
+  if(!string || !compare)return false
   return await bcrypt.compare(string, compare);
 }
  module.exports = {
