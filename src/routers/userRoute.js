@@ -52,8 +52,16 @@ router.post('/confirm'
   ,verifyCode()
 )
 
+router.get('/user'
+  , (req, res) => { res.send('get one user') }
+)
+
 router.get('/users'
   , getAllUsers()
+)
+
+router.get('/forget'
+  , (req, res) => { res.send('forget password') }
 )
 
 export default router
