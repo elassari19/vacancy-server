@@ -1,10 +1,6 @@
 import Joi from "joi";
 
 export default Joi.object({
-  createdBy: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'User'
-  },
   avatar: {
     public_id: Joi.string(),
     secure_url: Joi.string()
@@ -32,5 +28,5 @@ export default Joi.object({
     instagram: Joi.string(),
   },
   phome: Joi.number(),
-  timeline: Joi.string()  
+  timeline: Joi.string() 
 })

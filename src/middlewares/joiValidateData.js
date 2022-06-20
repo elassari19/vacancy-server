@@ -1,6 +1,6 @@
 
 export default (joiSchema) => (req, res, next) => {
-
+console.log(joiSchema)
   // validate req data
   const {error, value} = joiSchema.validate(req.body);
   

@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 
-const vacancy = new mongoose.Schema({
+const company = new mongoose.Schema({
   createdBy: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'User'
@@ -45,4 +45,4 @@ const vacancy = new mongoose.Schema({
   timestamps: true,
 })
 
-export default mongoose.model('Vacancy', vacancy)
+export default mongoose.model('Company', company)

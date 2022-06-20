@@ -10,11 +10,13 @@ import { Router } from "express"
 // import deleteAllUsers from "./deleteAllUsers"
 import vacancy from "./vacancy"
 import userRoute from "./userRoute"
+import company from "./company";
 
 const router = Router();
 
 router.use('/', userRoute);
 router.use('/vacancy', vacancy)
+router.use('/company', company)
 
 
 module.exports = router
