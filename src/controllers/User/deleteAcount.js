@@ -1,10 +1,11 @@
-import * as UserServices from "../../services/user.service"
+import { User } from '../../models';
+import db from '../../services'
 
 export default () => async(req, res) => {
 
   try {
 
-    const resault = await UserServices.deleteUser({_id: req.user._id})
+    const resault = await db.deleteOne('User', User, {_id: req.user._id})
 
     if(resault.deletedCount == 1){
       res.clearCookie('token')

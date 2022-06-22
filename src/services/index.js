@@ -34,9 +34,9 @@ export default {
     }
   },
 
-  findById: async (collection, shema, filterQuery, selectQuery) => {
+  findById: async (collection, shema, Id, selectQuery) => {
     try {
-      return await mongoose.model(collection, shema).findById(filterQuery).select(selectQuery)
+      return await mongoose.model(collection, shema).findById(Id).select(selectQuery)
     } catch (error) {
 
       return error

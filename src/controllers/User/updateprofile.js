@@ -1,4 +1,5 @@
-import * as UserServices from "../../services/user.service"
+import { User } from '../../models';
+import db from '../../services'
 
 export default () => async (req, res) => {
 
@@ -7,7 +8,7 @@ export default () => async (req, res) => {
   }
 
   try {
-    req.user = await UserServices.findUserAndUpdate({_id: req.user._id}, req.body, {new: true});
+    req.user = await db.findOneAndUpdate('User', User, {_id: req.user._id}, req.body);
     res.status(201).send('success update data')
   } catch (error) {
     res.status(400).send(error)

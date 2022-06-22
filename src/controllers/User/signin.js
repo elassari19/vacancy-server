@@ -1,4 +1,5 @@
-import * as UserServices from "../../services/user.service"
+import { User } from '../../models';
+import db from '../../services'
 import { compareString, createToken } from "../../utils";
 import { verifyToken } from "../../utils/token";
 
@@ -7,9 +8,9 @@ export default () => async (req,res)=>{
   if(!req.cookies.token){
     const {email , password} = req.body;
 
-    req.user = await UserServices.findUserAndSelect({email},{_id:1,password:1, status: 1});
+    req.user = await db.findOne('User', User, {email: email}, {_id:1,password:1, status: 1});
 
-    if(!req.user?._id) return res.status(409).send('acount not exist')
+    if(!req.user._id) return res.status(409).send('acount not exist')
 
     if(await compareString(password, req.user?.password)){
 
@@ -27,7 +28,7 @@ export default () => async (req,res)=>{
 
     if(user_id){
 
-      req.user = await UserServices.findUserById(user_id);
+      req.user = await db.findById('User', User, user_id);
 
       res.cookie('token', createToken(user_id, '30d'));
       res.status(200).send('already signed');

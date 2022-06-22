@@ -1,10 +1,11 @@
-import * as UserServices from "../../services/user.service"
+import { User } from '../../models';
+import db from '../../services'
 
 export default () => async (req, res, next) => {
   const { confirm, id } = req.query;
 
   // select user and get code of confirmaion
-  req.user = await UserServices.findUserAndSelect({_id: id}, {confirmation: 1, status:1})
+  req.user = await db.findOne('User', User, {_id: id}, {confirmation: 1, status:1})
 
   if(req.user.status == 'Active')return res.status(400).send('acount already activated')
   if(req.user.status != 'Pending')return res.status(400).send('somthing wrond')
@@ -14,10 +15,7 @@ export default () => async (req, res, next) => {
   if(valid){
 
     try {
-      req.user = await UserServices.findUserAndUpdate(
-        {_id: id},
-        {status: 'Active' , confirmation: ''},
-      )
+      req.user = await db.findOneAndUpdate('User', User, {_id: id},{status: 'Active' , confirmation: ''})
       res.status(201).send('account actived')
     } catch (error) {
       res.status().send(error)
