@@ -1,14 +1,34 @@
 import { Router } from "express";
-import { c_create, c_delete, c_get, c_getAll, c_update } from "../controllers/company";
-import { isAuthenticate, joiValidateData } from '../middlewares'
+import { c_create, c_delete, c_deleteMany, c_get, c_getMany, c_update } from "../controllers/company";
+import { handleData, isAuthenticate, validateData,  } from '../middlewares'
+import company from "../models/company";
 import joiCompany from '../validation/joiCompany'
 
 const router = Router();
 
-router.post('/create', joiValidateData(joiCompany), c_create())
-router.delete('/delete', c_delete())
-router.get('id', c_get())
-router.get('/', c_getAll())
-router.put('/update', c_update())
+router.post('/create'
+  , handleData('Company', company)
+  , validateData(joiCompany)
+  , c_create())
+
+  router.delete('/delete'
+  , isAuthenticate()
+  , c_delete())
+
+  router.delete('/deletemany'
+  , isAuthenticate()
+  , c_deleteMany())
+
+  router.put('/'
+  , isAuthenticate()
+  , handleData('Company', company)
+  , validateData(joiCompany)
+  , c_update())
+
+  router.get('/get'
+  , c_get())
+
+  router.get('/'
+  , c_getMany())
 
 export default router

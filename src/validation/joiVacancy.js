@@ -2,7 +2,8 @@ import Joi from "joi";
 import {categoryVacancy} from '../constants'
 
 export default Joi.object({
-  createdBy: Joi.number(),
+  _id: Joi.object(),
+  createdBy: Joi.object(),
   avatar: {
     public_id: Joi.string().required(),
     secure_url: Joi.string().required(),
@@ -31,18 +32,19 @@ export default Joi.object({
     street: Joi.string(),
     zip: Joi.string(),
     geo: {
-      lan: Joi.number(),
+      lon: Joi.number(),
       lat: Joi.number()
     }
   },
-  phome: Joi.number(),
+  phone: Joi.number(),
   cv: Joi.array().items(Joi.object().keys({
     public_id: Joi.string(),
-    secure_url: Joi.string()
+    secure_url: Joi.string(),
+    _id: Joi.object()
   })),
-  messages: {
-    createdBy: Joi.number(),
+  messages: Joi.array().items(Joi.object().keys({
+    createdBy: Joi.object(),
     title: Joi.string(),
     body: Joi.string()
-  },
+  }))
  })

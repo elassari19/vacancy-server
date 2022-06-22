@@ -38,9 +38,10 @@ const User = mongoose.Schema({
   skill: [String],
   crypto: Boolean,
   experience: [String],
-  company: [String],
+  companies: [{ type: mongoose.Schema.Types.ObjectId, ref:'Company' }],
+  vacancies: [{ type: mongoose.Schema.Types.ObjectId, ref:'Vacancy' }],
   education: [String],
-  birthday: Date,
+  birthday: String,
   timeline: String,
   empolyeType: String,
   social:{
@@ -61,7 +62,7 @@ const User = mongoose.Schema({
     street: String,
     zip: String,
     geo: {
-      lan: Number,
+      lon: Number,
       lat: Number
     }
   },

@@ -1,9 +1,9 @@
 import mongoose from "mongoose";
 
-const company = new mongoose.Schema({
+export default new mongoose.Schema({
   createdBy: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'User'
+    ref: 'User',
   },
   avatar: {
     public_id: String,
@@ -12,12 +12,9 @@ const company = new mongoose.Schema({
   webUrl: String,
   name: {
     type: String,
-    required: true
+    unique: true
   },
-  email: {
-    type: String,
-    required: true
-  },
+  email: String,
   Category: String,
   description: String,
   address: {
@@ -26,7 +23,7 @@ const company = new mongoose.Schema({
     street: String,
     zip: String,
     geo: {
-      lan: Number,
+      lon: Number,
       lat: Number
     }
   },
@@ -45,4 +42,4 @@ const company = new mongoose.Schema({
   timestamps: true,
 })
 
-export default mongoose.model('Company', company)
+// export default mongoose.model('Company', company)

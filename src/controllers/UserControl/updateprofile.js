@@ -7,7 +7,7 @@ export default () => async (req, res) => {
   }
 
   try {
-    req.user = await UserServices.findUserAndUpdate({_id: req.user._id}, req.query, {new: true});
+    req.user = await UserServices.findUserAndUpdate({_id: req.user._id}, req.body, {new: true});
     res.status(201).send('success update data')
   } catch (error) {
     res.status(400).send(error)

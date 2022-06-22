@@ -17,7 +17,6 @@ export default () => async (req, res) => {
     } 
     
     try {
-      console.log(req.value)
       req.user = await UserServices.createUser(req.value);// create new user
 
       if(req.user._id){

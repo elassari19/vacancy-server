@@ -4,8 +4,9 @@ export default () => (req, res, next) => {
   // save the update item in req.update
   req.user = {
     ...req.user._doc,
-    ...req.query
+    ...req.body
   };
+
   delete req.user.confirmation
   // ipass the combination of user and new update data
   //  for checking the validation of data

@@ -44,7 +44,7 @@ export default Joi.object({
     street: Joi.string(),
     zip: Joi.string(),
     geo: {
-      lan: Joi.number(),
+      lon: Joi.number(),
       lat: Joi.number()
     }
   },

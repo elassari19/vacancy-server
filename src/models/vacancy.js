@@ -1,10 +1,11 @@
 import mongoose from "mongoose";
 import { categoryVacancy } from "../constants";
 
-const vacancy = new mongoose.Schema({
+export default new mongoose.Schema({
   createdBy: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'User'
+    ref: 'User',
+    required: true
   },
   avatar: {
     public_id: String,
@@ -51,12 +52,14 @@ const vacancy = new mongoose.Schema({
     street: String,
     zip: String,
     geo: {
-      lan: Number,
+      lon: Number,
       lat: Number
     }
   },
-  phome: Number,
+  phone: Number,
   cv: [{
+    public_id: String,
+    secure_url: String,
     createdBy: {
       type: mongoose.Schema.Types.ObjectId,
       ref: 'User'
@@ -67,6 +70,8 @@ const vacancy = new mongoose.Schema({
     secure_url: String,
   }],
   messages: [{
+    title: String,
+    content: String,
     createdBy: {
       type: mongoose.Schema.Types.ObjectId,
       ref: 'User'
@@ -78,5 +83,3 @@ const vacancy = new mongoose.Schema({
 {
   timestamps: true,
 })
-
-export default mongoose.model('Vacancy', vacancy)

@@ -1,19 +1,21 @@
-import { VacancyServices } from '../../services'
+import { vacancy } from '../../models'
+import db from '../../services'
 import { cloudinaryDeleteFiles, destructImageId } from '../../utils'
 
 export default () => async (req,res) => {
 
   try {
   
-    const vacancies = await VacancyServices.findMultiVacancy({_id: req.query.id}, {cv: 1, _id: 0})
+    const vacancies = await db.findOne('Vacancy', vacancy, {_id: req.query.id}, {cv: 1, _id: 0})
 
     // set the public_id in array
     const image_ids = destructImageId(vacancies)
 
-    if(vacancies) {
+    // check if user own this vacancy
+    if(vacancies.createdBy == req.user.id) {
 
       // delete vacancy by id
-      await VacancyServices.deleteVacancy({_id: req.query.id})
+      await db.deleteMany('Vacancy', vacancy, {_id: req.query.id})
 
       // delete files of vacancy from cloudinary
       cloudinaryDeleteFiles(image_ids)

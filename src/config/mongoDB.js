@@ -1,6 +1,7 @@
 import mongoose from "mongoose"
 
-export default async () => { 
+export default async () => {
+
   try {
     await mongoose.connect(process.env.MONGOOSE_URI,{
       useUnifiedTopology: true,

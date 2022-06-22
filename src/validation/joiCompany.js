@@ -1,6 +1,7 @@
 import Joi from "joi";
 
 export default Joi.object({
+  _id: Joi.object(),
   avatar: {
     public_id: Joi.string(),
     secure_url: Joi.string()
@@ -8,6 +9,7 @@ export default Joi.object({
   webUrl: Joi.string(),
   name: Joi.string().required(),
   email: Joi.string().required(),
+  createdBy: Joi.object(),
   Category: Joi.string(),
   description: Joi.string(),
   address: {
@@ -16,7 +18,7 @@ export default Joi.object({
     street: Joi.string(),
     zip: Joi.string(),
     geo: {
-      lan: Joi.number(),
+      lon: Joi.number(),
       lat: Joi.number()
     }
   },
