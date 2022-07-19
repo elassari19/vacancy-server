@@ -1,10 +1,4 @@
 import mongoose from 'mongoose'
-import UserServices from './user.service'
-
-
-export {
-  UserServices,
-}
 
 export default {
 

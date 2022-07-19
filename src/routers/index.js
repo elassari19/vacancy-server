@@ -1,14 +1,13 @@
-import { Router } from "express"
+import { Router } from "express";
 
-import vacancy from "./vacancy"
-import user from "./user"
+import vacancy from "./vacancy";
+import user from "./user";
 import company from "./company";
 
 const router = Router();
 
-router.use('/', user);
-router.use('/vacancy', vacancy)
-router.use('/company', company)
+router.use("/vacancy", vacancy);
+router.use("/company", company);
+router.use("/", user);
 
-
-module.exports = router
+module.exports = router;

@@ -1,4 +1,4 @@
-import Joi from "Joi"
+import Joi from "Joi";
 
 export default Joi.object({
   _id: Joi.any(),
@@ -6,16 +6,18 @@ export default Joi.object({
   lastname: Joi.string().min(3).max(20).required(),
   email: Joi.string().email().required(),
   password: Joi.string().min(4).max(200).required(),
+  confirmPassword: Joi.any().valid(Joi.ref("password")).required(),
+  privacy: Joi.string().valid("checked"),
   phone: Joi.string().min(4).max(128),
   gender: Joi.string(),
   profile: {
     avatar: {
       public_id: Joi.string(),
-      secure_url: Joi.string()
+      secure_url: Joi.string(),
     },
     title: Joi.string(),
     description: Joi.string().min(50).max(300),
-    Underemployment: Joi.boolean()
+    Underemployment: Joi.boolean(),
   },
   about: Joi.array().items(Joi.string()),
   skill: Joi.array().items(Joi.string()),
@@ -26,17 +28,17 @@ export default Joi.object({
   birthday: Joi.string(),
   timeline: Joi.string(),
   empolyeType: Joi.string(),
-  social:{
+  social: {
     linkedin: Joi.string(),
     facebook: Joi.string(),
     tweeter: Joi.string(),
     github: Joi.string(),
-    instagram: Joi.string()
+    instagram: Joi.string(),
   },
   pay: {
     hour: Joi.number(),
     distance: Joi.number(),
-    day: Joi.number()
+    day: Joi.number(),
   },
   address: {
     country: Joi.string(),
@@ -45,10 +47,10 @@ export default Joi.object({
     zip: Joi.string(),
     geo: {
       lon: Joi.number(),
-      lat: Joi.number()
-    }
+      lat: Joi.number(),
+    },
   },
-  status: Joi.string().default('Pending'),
-  permission: Joi.string().default('User'),
+  status: Joi.string().default("Pending"),
+  permission: Joi.string().default("User"),
   confirmation: Joi.string(),
-})
+});
