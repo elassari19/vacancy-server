@@ -70,7 +70,7 @@ router.get("/user", c_getOne());
 
 router.get("/users", c_getMany());
 
-router.get("/forget", c_forgot());
+router.post("/forgot", c_forgot());
 
 router.get("/resetPssword", c_resetPassword());
 

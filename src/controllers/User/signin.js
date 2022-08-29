@@ -2,6 +2,7 @@ import { User } from "../../models";
 import db from "../../services";
 import { compareString, createToken } from "../../utils";
 import { verifyToken } from "../../utils/token";
+import cookie from "cookie";
 
 export default () => async (req, res) => {
   if (!req.cookies.token) {
@@ -11,7 +12,7 @@ export default () => async (req, res) => {
       "User",
       User,
       { email: email },
-      { _id: 1, password: 1, status: 1 }
+      { _id: 1, password: 1, status: 1, permission: 1 }
     );
 
     if (!req.user?._id) {
@@ -26,11 +27,26 @@ export default () => async (req, res) => {
           .status(202)
           .send({ success: false, message: "Please Active you Account" });
 
-      res.status(200).send({
-        success: true,
-        id: req.user._id,
-        token: createToken(req.user.id, "30d"),
-      });
+      const token = createToken(req.user.id, "30d");
+
+      res
+        .setHeader(
+          "Set-Cookie",
+          cookie.serialize("token", token, {
+            httpOnly: true,
+            secure: process.env.NODE_ENV !== "development",
+            maxAge: 60 * 60 * 60,
+            sameSite: "strict",
+            path: "/",
+          })
+        )
+        .status(200)
+        .send({
+          success: true,
+          id: req.user._id,
+          token,
+          permission: req.user.permission,
+        });
     } else {
       return res
         .status(203)

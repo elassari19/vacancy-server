@@ -20,7 +20,6 @@ export default () => async (req, res) => {
 
     try {
       req.user = await db.createOne("User", User, req.value); // create new user
-      console.log(req.user);
 
       if (req.user._id) {
         emailProps = {
@@ -34,10 +33,17 @@ export default () => async (req, res) => {
           <a href="http://${process.env.API_URL}/confirm?id=${req.user._id}&confirm=${req.user.confirmation}" >CLICK TO VIREFY EAMIL </a>
           </div>`,
         };
-
-        const isSent = sendEmail(emailProps); // send code verfication via email
-        isSent && console.log(isSent); // sent success
       }
+
+      const handleEmail = async (props) => {
+        console.log("start sending email");
+        const isSent = await sendEmail(props); // send code verfication via email
+        isSent && console.log(isSent); // sent success
+        !isSent && handleEmail(props);
+      };
+
+      handleEmail(emailProps);
+
       res.status(201).send({ success: true, message: req.user._id });
     } catch (error) {
       // issue

@@ -2,15 +2,12 @@ import Joi from "joi";
 
 export default Joi.object({
   _id: Joi.object(),
-  avatar: {
-    public_id: Joi.string(),
-    secure_url: Joi.string()
-  },
+  profileImage: Joi.any(),
   webUrl: Joi.string(),
   name: Joi.string().required(),
   email: Joi.string().required(),
   createdBy: Joi.object(),
-  Category: Joi.string(),
+  category: Joi.string(),
   description: Joi.string(),
   address: {
     country: Joi.string(),
@@ -19,16 +16,25 @@ export default Joi.object({
     zip: Joi.string(),
     geo: {
       lon: Joi.number(),
-      lat: Joi.number()
-    }
+      lat: Joi.number(),
+    },
   },
-  social:{
+  social: {
     linkedin: Joi.string(),
     facebook: Joi.string(),
     tweeter: Joi.string(),
     github: Joi.string(),
     instagram: Joi.string(),
   },
-  phome: Joi.number(),
-  timeline: Joi.string() 
-})
+  telegram: Joi.string(),
+  phone: Joi.number(),
+  timeline: Joi.string(),
+  benfits: {
+    events: Joi.boolean(),
+    insurance: Joi.boolean(),
+    bonus: Joi.boolean(),
+    review: Joi.boolean(),
+    discount: Joi.boolean(),
+    schedule: Joi.boolean(),
+  },
+});

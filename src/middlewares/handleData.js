@@ -1,7 +1,7 @@
 import db from "../services";
 
 export default (collectiom, schema) => async (req, res, next) => {
-  console.log("handle data", req.body);
+  // console.log("handle data", req.body);
   if (req.method == "PUT" && req.query.id) {
     try {
       const data = await db.findOne(
@@ -16,7 +16,7 @@ export default (collectiom, schema) => async (req, res, next) => {
         ...req.body,
       };
     } catch (error) {
-      res.status(409).send("somthing wrong");
+      res.status(409).send({ success: false, message: "somthing wrong" });
     }
   }
 

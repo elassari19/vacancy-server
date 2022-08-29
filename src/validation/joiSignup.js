@@ -51,6 +51,6 @@ export default Joi.object({
     },
   },
   status: Joi.string().default("Pending"),
-  permission: Joi.string().default("User"),
+  permission: Joi.string().valid("Employer", "Applicant"),
   confirmation: Joi.string(),
 });

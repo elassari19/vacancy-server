@@ -1,7 +1,4 @@
-import mongoDB from "./mongoDB"
-import configCloud from "./config.cloud"
+import mongoDB from "./mongoDB";
+import cloudinary from "./config.cloud";
 
-export {
-  mongoDB,
-  configCloud
-}
+export { mongoDB, cloudinary };

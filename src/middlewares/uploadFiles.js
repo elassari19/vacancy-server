@@ -1,56 +1,55 @@
 // https://www.youtube.com/watch?v=8Q5p3xQOH6E
-import cloudinary from 'cloudinary'
-import fs from 'fs'
+import fs from "fs";
+import { v2 as cloudinary, v2 } from "cloudinary";
 
 export default () => async (req, res, next) => {
+  // console.log("upload", req.value?.profileImage);
+  // the path file exist
+  if (!req.value?.profileImage) next();
 
+  // // size of file
+  // const file = req.value?.profileImage;
+  // if (file.size > 1024 * 1024) {
+  //   removeTmp(file);
+  //   return res.status(203).json({ msg: "Size too large" });
+  // }
+
+  // file extension
+  // if (file.mimetype !== "image/jpeg" && file.mimetype !== "image/svg") {
+  //   removeTmp(file);
+  //   return res.status(400).json({ msg: "File format is incorrect." });
+  // }
+  // console.log(req.value?.profileImage);
+  if (req.value.profileImage?.public_id) {
+    console.log(`image didn't change`);
+    next();
+  }
   try {
-    if(!req.files || Object.keys(req.files).length === 0)
-      return res.status(400).json({msg: 'No files were uploaded.'})
-    
-    const file = req.files.file;
-    if(file.size > 1024*1024) {
-      removeTmp(file.tempFilePath)
-      return res.status(400).json({msg: "Size too large"})
+    // upload file
+    const result = await v2.uploader.upload(req.value?.profileImage, {
+      folder: "avatar",
+    });
+    console.log(1);
+
+    if (result.public_id) {
+      req.value.profileImage = {
+        public_id: result.public_id,
+        secure_url: result.secure_url,
+      };
     }
 
-    if(file.mimetype !== 'image/jpeg' && file.mimetype !== 'image/svg'){
-      removeTmp(file.tempFilePath)
-      return res.status(400).json({msg: "File format is incorrect."})
-    }
-
-    cloudinary.v2.uploader.upload(file.tempFilePath, {folder: "avatar"}, async(err, resault)=>{
-      if(err) throw err;
-
-      removeTmp(file.tempFilePath);
-
-      // delete the old avatar of user
-      const {avatar} = req.user.profile.avatar;
-      if(avatar) {
-        
-        // remove image avatar from the cloudinary
-        cloudinary.v2.uploader.destroy(avatar, async(err, result) =>{
-          if(err) throw err;
-        })
-      }
-
-
-      req.user.profile.avatar = {
-        public_id: resault.public_id,
-        secure_url: resault.secure_url
-      }
-
-      next();
-    })
-
+    console.log("result", result.public_id);
+    next();
   } catch (err) {
-      return res.status(500).json({msg: err.message})
+    return res
+      .status(203)
+      .json({ success: false, message: "upload image filed " + err.message });
   }
 };
 
 // cleare request from files
-const removeTmp = (path) =>{
-  fs.unlink(path, err=>{
-      if(err) throw err;
-  })
+const removeTmp = (path) => {
+  fs.unlink(path, (err) => {
+    if (err) throw err;
+  });
 };
