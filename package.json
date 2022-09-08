@@ -10,7 +10,8 @@
   "scripts": {
     "dev": "nodemon --exec babel-node src/",
     "build": "babel src/ -d dist",
-    "start": "npm run build && node dist/"
+    "start": "npm run build && node dist/",
+    "heroku-prebuild": "npm install"
   },
   "dependencies": {
     "bcrypt": "^5.0.1",
