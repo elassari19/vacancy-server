@@ -5,6 +5,9 @@ import session from "express-session";
 import { mongoDB } from "./config";
 import express from "express";
 import cors from "cors";
+
+app.use("/", express.static(resolve(__dirname, "../dist")));
+
 // dotenv library
 require("dotenv").config();
 
