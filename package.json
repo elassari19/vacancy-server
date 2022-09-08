@@ -8,9 +8,9 @@
     "npm": "8.5.0"
   },
   "scripts": {
-    "dev": "nodemon --exec babel-node src/index.js",
-    "build": "babel src/index.js -d dist",
-    "start": "npm run build && node dist/index.js"
+    "dev": "nodemon --exec babel-node src/",
+    "build": "babel src/ -d dist",
+    "start": "npm run build && node dist/"
   },
   "dependencies": {
     "bcrypt": "^5.0.1",
