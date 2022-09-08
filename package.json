@@ -9,7 +9,7 @@
   },
   "scripts": {
     "dev": "nodemon --exec babel-node src/index.js",
-    "build": "babel index.js -d dist",
+    "build": "babel src/index.js -d dist",
     "start": "npm run build && node dist/index.js"
   },
   "dependencies": {
