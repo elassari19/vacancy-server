@@ -9,7 +9,7 @@
   },
   "scripts": {
     "dev": "nodemon --exec babel-node src/",
-    "build": "[my-framework] build src/ --output public",
+    "build": "babel src/ -d public",
     "start": "npm run build && node dist/",
     "heroku-prebuild": "npm install"
   },
