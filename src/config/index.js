@@ -1,4 +1,4 @@
 import mongoDB from "./mongoDB";
-import cloudinary from "./config.cloud";
+import cloudinary from "./cloud";
 
 export { mongoDB, cloudinary };
